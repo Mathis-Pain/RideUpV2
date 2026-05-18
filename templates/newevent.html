@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+  {{template "InitHead" .}}
+  <body class="body-newevent">
+    {{template "InitNav" .}}
+    <main class="main-newevent">
+      <form action="/NewEvent" method="POST" class="form-newevent">
+        <!-- Paramètres sur la même ligne -->
+        <div class="params-newevent">
+          <div class="param">
+            <label for="eventTitle">Titre :</label>
+            <input
+              type="text"
+              id="eventTitle"
+              name="title"
+              required
+              placeholder="Ballade"
+              maxlength="30"
+            />
+          </div>
+          <div class="param">
+            <label for="eventDate">Date :</label>
+            <input type="date" id="eventDate" name="date" required />
+          </div>
+          <div class="param">
+            <label for="eventTime">Heure de départ :</label>
+            <input type="time" id="eventTime" name="time" required />
+          </div>
+          <div class="param">
+            <label for="eventEndTime">Heure de fin approximative :</label>
+            <input type="time" id="eventEndTime" name="Endtime" />
+          </div>
+        </div>
+
+        <!-- Lieu en dessous -->
+        <div class="form-group">
+          <label for="eventLocation"
+            >Lieu de départ (ou double clic sur la carte):</label
+          >
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="{{.Address}}"
+          />
+
+          <input
+            type="hidden"
+            id="latitude"
+            name="latitude"
+            value="{{.Latitude}}"
+          />
+          <input
+            type="hidden"
+            id="longitude"
+            name="longitude"
+            value="{{.Longitude}}"
+          />
+        </div>
+
+        <!-- Carte -->
+        <div id="map" data-lat="{{.Latitude}}" data-lon="{{.Longitude}}"></div>
+
+        <!-- Bouton -->
+        <button type="submit" class="button">Créer l'événement</button>
+      </form>
+    </main>
+    {{template "InitFooter" .}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <!-- Script spécifique NewEvent -->
+    <script src="/static/js/newevent.js"></script>
+    <script src="/static/js/nav.js"></script>
+  </body>
+</html>

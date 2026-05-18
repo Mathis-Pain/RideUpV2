@@ -1,0 +1,1043 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit; /* meme propriete que son parent  */
+  border: none;
+  background: none;
+  outline: none;
+}
+:root {
+  --font-title: "BBH Sans Bartle", sans-serif;
+  --font-text: "Comic Relief", sans-serif;
+  --grey: #284655;
+  --orange: #cc5500;
+  --color-error: red;
+  --green: green;
+}
+.body-connection,
+.body-UpdatePassword,
+.body-home,
+.body-registration,
+.body-error {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.body-home {
+  overflow: hidden;
+}
+.main-home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: var(--font-text);
+}
+.app-title,
+.error-title {
+  font-size: 4rem;
+  font-weight: 900;
+  font-family: "Arial Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  /* Dégradé diagonal orange foncé / noir */
+  background: linear-gradient(135deg, var(--orange) 50%, var(--grey) 50%);
+  /* Appliquer le dégradé au texte */
+  -webkit-background-clip: text; /* Safari, Chrome */
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* standard, Firefox et autres */
+  color: transparent; /* fallback si needed */
+}
+
+.logo-image {
+  width: 35%;
+  height: auto; /* conserve le ratio original de l'image */
+  display: block; /* pour éviter les petits espaces sous l'image */
+  margin: 0 auto; /* centrer l'image horizontalement */
+}
+
+.button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: "Arial Black", sans-serif;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  border: 2px solid #cc5500; /* orange foncé */
+  border-radius: 10px;
+  background: linear-gradient(135deg, #cc5500 50%, var(--grey) 50%);
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 2px 4px 8px var(--grey);
+}
+.register {
+  margin-bottom: 10px;
+  font-family: var(--font-text);
+  display: inline-block;
+  padding-bottom: 4px; /* espace pour le soulignement */
+  border-bottom: 4px solid; /* épaisseur du soulignement */
+  border-image: linear-gradient(to right, #cc5500 50%, var(--grey) 50%) 1;
+}
+
+#rallback {
+  font-family: var(--font-text);
+  display: inline-block;
+  padding-bottom: 4px; /* espace pour le soulignement */
+  border-bottom: 4px solid; /* épaisseur du soulignement */
+  border-image: linear-gradient(to right, #cc5500 50%, var(--grey) 50%) 1;
+  font-size: 2em;
+}
+
+/* Effet au survol */
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 6px 12px var(--grey);
+  border-color: #ff6600; /* léger éclaircissement de l’orange */
+}
+p {
+  font-family: var(--font-text);
+  text-align: center; /* centre le texte sur chaque ligne */
+  margin: 0 auto; /* centre le bloc lui-même */
+  width: 80%; /* limite la largeur du paragraphe */
+  line-height: 1.6; /* espace entre les lignes pour lisibilité */
+}
+/* Footer */
+footer {
+  margin-top: 10px;
+  margin-bottom: 0;
+  width: 100vw;
+}
+footer p {
+  background: var(--grey);
+  color: white;
+  width: 100%; /* occupe toute la largeur du conteneur */
+  text-align: center; /* centre le texte si tu veux */
+}
+/* MARK: Page du formulaire d'inscription*/
+
+.main-connection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: var(--font-text);
+}
+
+.main-connection h2 {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #cc5500 50%, var(--grey) 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  padding: 0;
+  line-height: 1;
+  display: inline-block;
+}
+
+#registerForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-family: var(--font-text);
+  padding-bottom: 4px; /* espace pour le soulignement */
+  border-bottom: 4px solid; /* épaisseur du soulignement */
+  border-image: linear-gradient(to right, #cc5500 50%, var(--grey) 50%) 1;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centre horizontalement tout le contenu */
+}
+
+input {
+  border: 2px solid #cc5500;
+  box-shadow: 2px 4px 8px var(--grey);
+  border-radius: 10px;
+  text-align: center; /* centre le texte ET le placeholder */
+  cursor: pointer;
+  padding: 8px;
+  margin: auto;
+}
+
+/* groupe "Afficher" */
+.show-password {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centre aussi la case + texte */
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.show-password-text {
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+#registerForm input,
+#registerForm select,
+#registerForm textarea {
+  width: 85%; /* prend toute la largeur du conteneur */
+  max-width: 400px; /* limite la largeur à 400px */
+  box-sizing: border-box; /* inclut padding et border dans la largeur */
+  padding: 10px; /* espace intérieur confortable */
+  margin-bottom: 15px; /* espace entre les champs */
+  border: 2px solid #cc5500;
+  border-radius: 10px;
+  box-shadow: 2px 4px 8px var(--grey);
+  text-align: center; /* si tu veux centrer le texte */
+}
+/* MARK: Page de connexion */
+/* Bouton connexion */
+.form-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-button img {
+  height: 20px;
+  margin-right: 10px;
+}
+
+.main-connection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-text);
+}
+
+.main-connection .form-group {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+/* Message d'erreur  */
+.error-message,
+.incorrect {
+  font-size: 0.9em;
+  color: var(--color-error) !important;
+  text-align: center;
+}
+/* MARK: cookies */
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 480px;
+  background: var(--grey);
+  color: #f5f5f5;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.2rem 1.5rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.4s ease;
+}
+
+.cookie-banner.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.cookie-content {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.cookie-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cookie-btn {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.cookie-btn.accept {
+  background-color: #cc5500;
+  color: white;
+  box-shadow: 0 0 10px rgba(204, 85, 0, 0.3);
+}
+
+.cookie-btn.accept:hover {
+  background-color: #e06100;
+  box-shadow: 0 0 15px rgba(204, 85, 0, 0.5);
+}
+
+.cookie-btn.decline {
+  background-color: #555;
+  color: #ddd;
+}
+
+.cookie-btn.decline:hover {
+  background-color: #666;
+}
+
+.hidden {
+  display: none;
+}
+
+/* MARK: cookies*/
+.main-error {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-text);
+}
+.page-error-message {
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* MARK:Page rideup */
+.body-rideup {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.main-rideup {
+  display: flex;
+  flex: 1;
+
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* MARK: navbar*/
+.navbar {
+  background: linear-gradient(135deg, #cc5500 50%, var(--grey) 50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 40px;
+}
+
+/* Logo à gauche */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.logo span {
+  color: var(--grey);
+}
+/* Liens de navigation */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 60px;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: 1.5rem;
+}
+
+.nav-links a:hover {
+  color: var(--orange);
+}
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.dropdown-content {
+  top: calc(100% + 15px);
+  display: none;
+  background: var(--grey);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  list-style: none;
+  overflow: hidden;
+  z-index: 10000;
+}
+
+.dropdown-content li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a {
+  font-family: Times;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  display: block;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.dropdown-content a:hover {
+  background: var(--orange);
+  color: white;
+}
+
+.dropdown.active .dropdown-content {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.section-event-list {
+  width: 50%;
+}
+.section-event-list h2 {
+  text-align: center;
+}
+.user-events,
+.available-events {
+  flex: 1; /* prend l’espace dispo */
+  max-height: 80vh; /* limite la hauteur */
+  overflow-y: auto; /* active le scroll vertical si besoin */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: var(--grey);
+  margin-bottom: 1rem;
+}
+.title-creatorname {
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(135deg, #cc5500 50%, var(--grey) 50%);
+}
+
+.title-creatorname h3 {
+  margin-left: 5px;
+}
+
+.creatorname {
+  margin-right: 5px;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.creatorname img {
+  filter: hue-rotate(-60deg) saturate(600%) brightness(1.1);
+}
+
+.join-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-family: "Arial Black", sans-serif;
+  padding: 0px 6px;
+  text-transform: uppercase;
+  border: 2px solid #cc5500; /* orange foncé */
+  border-radius: 10px;
+  background: linear-gradient(135deg, #cc5500 50%, var(--grey) 50%);
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 2px 4px 8px var(--grey);
+}
+
+.btn-participants {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.participants {
+  display: flex;
+  margin-left: auto;
+  font-size: 1rem;
+  color: #444;
+  font-weight: 500;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.user-participants {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.image-participants {
+  width: 30px;
+  filter: hue-rotate(20deg) saturate(200%);
+}
+
+.join-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 6px 12px var(--grey);
+  border-color: #ff6600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contenu de démonstration */
+.content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content h1 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: #666;
+  line-height: 1.6;
+}
+/* MARK:Page newevent*/
+.body-newevent {
+  height: 100vh; /* hauteur fixe = hauteur de l'écran */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* bloque le scroll */
+}
+
+.main-newevent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+form label {
+  margin-bottom: 0.5rem;
+}
+#address {
+  width: 100%;
+  padding: 0.5rem; /* pour agrandir la zone cliquable */
+  box-sizing: border-box; /* inclut padding dans la largeur */
+  font-size: 1rem; /* pour que le texte soit lisible */
+}
+
+.form-newevent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+.params-newevent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; /* espace entre chaque champ */
+  gap: 20px;
+  width: 100%; /* limite la largeur de la ligne */
+}
+.form-newevent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.params-newevent .param {
+  display: flex;
+  align-items: center;
+  flex-direction: row; /* label au-dessus de l’input */
+  flex: 1; /* pour que chaque champ prenne la même largeur */
+}
+
+#map {
+  width: 45%;
+  flex: 1; /* prend tout l'espace restant */
+  min-height: 250px;
+  border-radius: 10px;
+}
+/* MARK:Page Preference */
+.body-profil {
+  height: 100vh; /* hauteur fixe = hauteur de l'écran */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* bloque le scroll */
+}
+.main-profil {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+.location-group {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-group label {
+  width: 500px; /* ajuste selon ton texte */
+  white-space: normal; /* ou nowrap si tu veux */
+}
+
+.location-group input #address {
+  flex: 1;
+  width: 400px;
+  padding: 8px;
+  font-size: 1rem;
+}
+.main-profil h2 {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.userposition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.form-preference {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+/* MARK:Page UpdatePassword*/
+
+.update-password {
+  flex: 1; /* prend tout l’espace disponible sous la navbar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Formulaire stylé et centré */
+#update-password-form {
+  padding: 40px 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Groupes de champs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--grey);
+}
+
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+footer {
+  margin-top: auto; /* pousse le footer en bas si besoin */
+}
+
+/* Checkbox + texte "Afficher" */
+.show-password {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #666;
+}
+h2 {
+  color: var(--orange);
+}
+
+/* MARK:Page Admin */
+
+body-rideupadmin {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-rideupadmin {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: 100vh;
+}
+.main-rideupadmin .information {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+.main-rideupadmin .information h3,
+.main-rideupadmin .information p {
+  width: 50%;
+}
+/* Chaque section prend la moitié */
+.set-of-event,
+.global-information {
+  width: 50%;
+}
+.set-of-event {
+  flex: 1; /* prend l’espace dispo */
+  max-height: 90vh; /* limite la hauteur */
+  overflow-y: auto; /* active le scroll vertical si besoin */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.global-information {
+  height: fit-content;
+  flex: 1; /* prend 1/3 de la largeur */
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.information {
+  margin-bottom: 1rem;
+}
+
+/*  MARK: responsive  */
+@media (max-width: 700px) {
+  html,
+  body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .body-home,
+  .body-rideup,
+  .body-registration {
+    min-height: 100vh;
+    overflow: auto; /* permet le scroll */
+  }
+  .body-newevent,
+  .body-profil,
+  .body-rideup {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .error-title {
+    text-align: center;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  footer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  footer p {
+    background: var(--grey);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #cc5500 50%, #333 50%);
+    color: white;
+    z-index: 1000;
+  }
+
+  .nav-links {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    top: 0;
+    background-color: #333;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .nav-links li {
+    margin: 2rem 0;
+  }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10001;
+    position: relative; /* nécessaire pour que z-index fonctionne */
+    width: 35px; /* largeur du burger */
+    height: 30px; /* hauteur du burger */
+  }
+
+  .burger div {
+    width: 100%; /* ligne prend toute la largeur du burger */
+    height: 4px; /* épaisseur de la ligne */
+    background-color: white !important;
+    margin: 4px 0; /* espace entre les lignes */
+    border-radius: 2px; /* arrondi pour joli effet */
+    transition: all 0.3s ease; /* pour l’animation X */
+  }
+
+  .nav-links.nav-active {
+    padding: 1rem;
+    transform: translateX(0%);
+    z-index: 10000;
+  }
+
+  /* Animation lines */
+  .burger.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  .burger.toggle .line2 {
+    opacity: 0;
+  }
+  .burger.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  .body-newevent {
+    box-sizing: border-box;
+  }
+  .logo {
+    margin: auto;
+  }
+  #location {
+    text-align: center;
+  }
+  .location-group {
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+  }
+  .name-application {
+    color: white !important;
+  }
+  .main-rideup {
+    display: flex;
+    flex-direction: column;
+  }
+  .params-newevent {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dropdown-content {
+    top: 0; /* même hauteur que le bouton */
+    transform: translateX(-10px);
+    right: 100%;
+    min-width: 150px; /* largeur adaptée au mobile */
+    background-color: #333;
+    margin-top: -8rem;
+  }
+
+  /********* Page Newevent *********/
+
+  .main-newevent {
+    display: block !important; /* ne pas utiliser flex */
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .form-newevent {
+    display: block !important; /* ne pas utiliser flex ici */
+    height: auto !important;
+  }
+
+  .params-newevent {
+    flex-direction: column !important;
+    display: block !important;
+  }
+
+  .body-newevent {
+    overflow-y: auto !important; /* scroll rétabli */
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+  .body-newevent input {
+    margin-bottom: 15px;
+  }
+
+  .form-newevent {
+    text-align: center;
+  }
+
+  #map {
+    width: 100% !important;
+    height: 300px !important;
+    margin-bottom: 20px;
+    flex: none !important;
+  }
+  .params-newevent .param {
+    flex-direction: column; /* label au-dessus de l’input */
+    flex: 1; /* pour que chaque champ prenne la même largeur */
+  }
+  /* Tu peux éventuellement changer l’animation pour un slide horizontal */
+  .dropdown.active .dropdown-content {
+    display: block;
+    animation: slideInLeft 0.3s ease;
+  }
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  /********* Page RideUPadmin *********/
+  .main-rideupadmin {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-event-list {
+    width: 100%;
+  }
+  .set-of-event,
+  .global-information {
+    width: 100%;
+  }
+  .global-information {
+    order: -1;
+  }
+  .main-rideupadmin .information {
+    display: flex; /* active flex sur le container */
+    justify-content: space-between; /* espace entre h3 et p */
+    align-items: center; /* centre verticalement si besoin */
+    width: 100%; /* pour occuper tout le container parent */
+    margin-bottom: 10px; /* optionnel pour espacer les lignes */
+  }
+
+  .main-rideupadmin .information h3,
+  .main-rideupadmin .information p {
+    width: auto; /* laisse le flex gérer la taille, ou mettre un max-width si nécessaire */
+    margin: 0; /* supprime les marges par défaut */
+  }
+}

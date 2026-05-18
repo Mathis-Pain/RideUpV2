@@ -1,0 +1,45 @@
+# ── ENV ──────────────────────────────────────────
+external.env
+.env
+.env.*
+!.env.example
+
+# ── DB ───────────────────────────────────────────
+data/RideUp.db
+data/*.db-shm
+data/*.db-wal
+
+# ── GO ───────────────────────────────────────────
+bin/
+*.exe
+*.out
+tmp/
+
+# ── FLUTTER ──────────────────────────────────────
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/build/
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/android/key.properties
+mobile/ios/.symlinks/
+mobile/ios/Pods/
+mobile/ios/Flutter/flutter_export_environment.sh
+mobile/lib/core/config/env.g.dart
+
+# ── SECRETS ──────────────────────────────────────
+*.keystore
+*.jks
+*.p12
+*.p8
+GoogleService-Info.plist
+google-services.json
+
+# ── OS / IDE ─────────────────────────────────────
+.DS_Store
+.idea/
+.vscode/
+
+# ── CLAUDE CODE ──────────────────────────────────
+.claude/

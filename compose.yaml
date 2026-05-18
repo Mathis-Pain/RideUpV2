@@ -1,0 +1,16 @@
+services:
+  server:
+    build:
+      context: .
+      target: final
+    ports:
+      - 5090:5090
+    environment:
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_REDIRECT_URL=${GOOGLE_REDIRECT_URL}
+    volumes:
+      - rideup-data:/data
+
+volumes:
+  rideup-data:

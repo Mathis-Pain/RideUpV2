@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+  {{template "InitHead" .}}
+  <body class="body-rideup">
+    {{template "InitNav" .}}
+
+    <main class="main-rideup">
+      <!-- Carte unique -->
+      <div
+        id="map"
+        data-lat="{{.Latitude}}"
+        data-lon="{{.Longitude}}"
+        data-events="{{.EventsJSON}}"
+        data-user-id="{{.UserID}}"
+      ></div>
+
+      <div class="section-event-list">
+        <section class="user-events">
+          <h2>Liste des sorties :</h2>
+
+          <div class="cards-container">
+            {{range .AvailableEvents}}
+            <div
+              class="card {{if eq .CreatedBy $.UserID}}my-event{{else}}other-event{{end}}"
+              data-event-id="{{.ID}}"
+              data-lat="{{.Latitude}}"
+              data-lon="{{.Longitude}}"
+            >
+              <div class="title-creatorname">
+                <h3>{{.Title}}</h3>
+                <p class="creatorname">
+                  {{if eq .CreatedBy $.UserID}}
+                  <img
+                    src="/static/images/icone-participant-vert.png"
+                    class="image-participants"
+                    alt="icône participants"
+                  />{{end}} {{.CreatorName}}
+                </p>
+              </div>
+
+              <p><strong>Date :</strong> {{.FormattedStart}}</p>
+              <p><strong>Lieu :</strong> {{.Address}}</p>
+
+              {{if .Description.Valid}}
+              <p>{{.Description.String}}</p>
+              {{end}}
+
+              <div class="btn-participants">
+                <!-- Si c'est VOTRE événement -->
+                {{if eq .CreatedBy $.UserID}}
+                <button class="delete-btn" data-event-id="{{.ID}}">
+                  🗑️ SUPPRIMER
+                </button>
+
+                <!-- Si c'est un événement des AUTRES -->
+                {{else}}
+                <button
+                  class="join-btn {{if .UserJoined}}joined{{end}}"
+                  data-event-id="{{.ID}}"
+                >
+                  {{if .UserJoined}} QUITTER{{else}} REJOINDRE{{end}}
+                </button>
+                {{end}}
+
+                <span class="user-participants">
+                  <img
+                    src="/static/images/icone-participant.png"
+                    class="image-participants"
+                    alt="icône participants"
+                  />
+                  {{.Participants}}
+                </span>
+              </div>
+            </div>
+            {{else}}
+            <p>Aucune sortie disponible pour le moment.</p>
+            {{end}}
+          </div>
+        </section>
+      </div>
+    </main>
+
+    {{template "InitFooter" .}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="/static/js/rideup.js" defer></script>
+    <script src="/static/js/nav.js"></script>
+  </body>
+</html>

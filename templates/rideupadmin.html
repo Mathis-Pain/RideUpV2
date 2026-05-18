@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+  {{template "InitHead" .}}
+  <body class="body-rideupadmin">
+    {{template "InitNav" .}}
+    <main class="main-rideupadmin">
+      <section class="set-of-event">
+        <div class="cards-container">
+          {{range .AvailableEvents}}
+          <div class="card">
+            <div class="title-creatorname">
+              <h3>{{.Title}}</h3>
+              <p class="creatorname">{{.CreatorName}}</p>
+            </div>
+            <p><strong>Date :</strong> {{.FormattedStart}}</p>
+            <p><strong>Lieu :</strong> {{.Address}}</p>
+            {{if .Description.Valid}}
+            <p>{{.Description.String}}</p>
+            {{end}}
+            <div class="btn-participants">
+              <button class="join-btn" data-event-id="{{.ID}}">
+                SUPPRIMER
+              </button>
+            </div>
+          </div>
+          {{else}}
+          <p>Aucune sortie disponible actuellement.</p>
+          {{end}}
+        </div>
+      </section>
+
+      <section class="global-information">
+        <div class="information">
+          <h3>Nombre d'utilisateur global :</h3>
+          <p>{{.DashBoard.NumberUsers}}</p>
+        </div>
+
+        <div class="information">
+          <h3>Nombre d'utilisateur connecté :</h3>
+          <p>{{.DashBoard.NumberUserConnected}}</p>
+        </div>
+
+        <div class="information">
+          <h3>Nombre d'évènement :</h3>
+          <p>{{.DashBoard.NumberEvent}}</p>
+        </div>
+      </section>
+    </main>
+    {{template "InitFooter" .}}
+
+    <script src="/static/js/nav.js"></script>
+    <script src="/static/js/admin.js"></script>
+  </body>
+</html>
