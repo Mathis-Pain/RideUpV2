@@ -11,6 +11,8 @@ data/*.db-wal
 
 # ── GO ───────────────────────────────────────────
 bin/
+build/
+RideUP
 *.exe
 *.out
 tmp/

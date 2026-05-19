@@ -58,6 +58,8 @@ lib/
 | Chat WebSocket            | `web_socket_channel`                                 | ^3.x          |
 | Push notifications        | `firebase_messaging` + `flutter_local_notifications` | latest        |
 | Photo / Camera            | `image_picker` + `cached_network_image`              | latest        |
+| Image compression         | `flutter_image_compress`                             | latest        |
+| Map clustering            | `flutter_map_marker_cluster`                         | latest        |
 | Storage (media)           | Supabase Storage                                     | —             |
 | Secure storage            | `flutter_secure_storage`                             | ^9.x          |
 | Env                       | `envied`                                             | latest        |
@@ -134,6 +136,8 @@ GoRoute(
   3. Flutter intercepte via `go_router` + `supabase.auth.onAuthStateChange` (event `passwordRecovery`)
   4. `supabase.auth.updateUser(password: newPassword)` → mot de passe mis à jour
 - Template du mail et URL de redirect configurés dans Supabase Dashboard → Auth → Email Templates
+
+### Map
 
 - `flutter_map` with `TileLayer` (OSM tiles)
 - Live rider markers via Supabase Realtime (presence channels)
@@ -250,6 +254,7 @@ flutter test integration_test/
 
 ## Critical Rules
 
+- Never use `print()` in production code — use `debugPrint()` in dev only, structured logging otherwise
 - Never call Supabase or Dio directly from a widget — always through a repository
 - Never hardcode strings visible to the user — use `l10n` (ARB files)
 - All `async` calls in providers wrapped in `AsyncValue.guard`

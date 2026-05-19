@@ -1,42 +1,46 @@
 package main
 
 import (
-	builddb "RideUP/buildDB"
-	"RideUP/routes"
-	"RideUP/sessions"
-	"RideUP/utils/authextern"
 	"fmt"
 	"log"
 	"net/http"
-	"time"
+	"os"
+
+	"RideUP/handlers"
+	"RideUP/hub"
+	"RideUP/middleware"
 )
 
 func main() {
-	// initialisation de la bdd
-	db, err := builddb.InitDB()
-	if err != nil {
-		fmt.Println("Erreur creation bdd :", err)
-		return
-	}
-	defer db.Close()
-	fmt.Println("Projet lancé, DB prête a l'emploi")
-	// Identification google
-	authextern.InitGoogleOAuth()
-	// Nettoyage des sessions expirées toutes les 5 minutes
-	go func() {
-		for {
-			time.Sleep(30 * time.Minute)
-			sessions.CleanupExpiredSessions()
-		}
-	}()
-
-	//initialisation des routes
-	mux := routes.InitRoutes()
-
-	// Demarrage du serveur
-	fmt.Println("serveur démarré sur http://localhost:5090...")
-	if err := http.ListenAndServe(":5090", mux); err != nil {
-		log.Fatal("Erreur serveur:", err)
+	supabaseURL := os.Getenv("SUPABASE_URL")
+	if supabaseURL == "" {
+		log.Fatal("SUPABASE_URL requis")
 	}
 
+	if err := middleware.Init(supabaseURL); err != nil {
+		log.Fatalf("JWKS init: %v", err)
+	}
+
+	h := hub.New()
+	go h.Run()
+
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintln(w, `{"status":"ok"}`)
+	})
+
+	// WebSocket chat par event — auth via ?token=<jwt>
+	mux.Handle("/ws/chat/{eventId}", middleware.Auth(handlers.ChatWS(h)))
+
+	// Requis pour la persistance des messages
+	if os.Getenv("SUPABASE_ANON_KEY") == "" {
+		log.Println("WARN: SUPABASE_ANON_KEY non défini, persistance désactivée")
+	}
+
+	log.Println("API démarrée sur :8080")
+	if err := http.ListenAndServe(":8080", mux); err != nil {
+		log.Fatal(err)
+	}
 }
